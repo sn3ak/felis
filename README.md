@@ -18,6 +18,8 @@ Edit settings.py in the felis directory
  Change DATABASES settings to match your environment
  
  Setup redis database and update CACHES to match your environment
+
+ Setup redis database in Q_CLUSTER to match your environment
  
  Change FELIS_WORK_DIR to match your environment
  
