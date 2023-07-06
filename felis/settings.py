@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'p05$w&lmltxt!(4$b-hn003vinmsk^&g+)ba16)2u4j=g%$z^e'
+SECRET_KEY = 'This-should-be-a-really-long-string-of-characters'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.172.8', '192.168.172.73', 'felis_devel.vonabarak.ru', 'felis_devel']
+ALLOWED_HOSTS = ['host ip here', '192.168.172.73', 'some.hostname.tld']
 
 
 # Application definition
@@ -99,7 +99,7 @@ DATABASES = {
         'USER': 'felis',
         'HOST': '192.168.172.72',
         'NAME': 'felis',
-        'PASSWORD': 'FaucooB5',
+        'PASSWORD': 'ChangeMe@!',
     }
 }
 
