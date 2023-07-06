@@ -2,7 +2,7 @@
 import string
 import subprocess
 import shlex
-from django_q.tasks import async
+from django_q.tasks import async_task
 from felis.errors import *
 
 

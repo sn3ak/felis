@@ -6,7 +6,7 @@ from datetime import timedelta
 from django.utils import timezone
 from django.db.models import Q
 import logging
-from django_q.tasks import async, fetch
+from django_q.tasks import async_task, fetch
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +45,7 @@ def task_scheduler():
                         transaction, transaction.instance))
                     continue
                 transaction.started = timezone.now()
-                transaction.task = fetch(async(transaction.commit))
+                transaction.task = fetch(async_task(transaction.commit))
                 transaction.save(force_update=True)
             elif transaction.depends.filter(~Q(rolledback=None) & Q(priority__gt=transaction.priority)).first():
                     logger.debug('Rolling back {0} as its dependency {1} have been rolled back'.format(

@@ -11,7 +11,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from felis.utils import run_shell_command
 from guardian.shortcuts import get_perms
-from django_q.tasks import async
+from django_q.tasks import async_task
 
 class SshDaemon:
     """
@@ -115,7 +115,7 @@ class SshDaemon:
             self.jail.save(update_fields=('console', ))
 
     def start(self):
-        async(self.run, hook=self.on_stop)
+        async_task(self.run, hook=self.on_stop)
 
     def wait(self):
         if self.is_running():

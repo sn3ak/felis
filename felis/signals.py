@@ -8,7 +8,7 @@ from django.dispatch import receiver
 from django.db.models import Q
 from django.utils import timezone
 from django.contrib.contenttypes.models import ContentType
-from django_q.tasks import async
+from django_q.tasks import async_task
 from felis.models import Model, Transaction, UserPreferences
 from felis.middleware import get_auth_user
 
@@ -44,7 +44,7 @@ def felis_transaction_post_save_signal_receiver(instance, **kwargs):
         if get_auth_user():
             instance.author = get_auth_user()
             instance.save()
-        async('felis.tasks.task_scheduler')
+        async_task('felis.tasks.task_scheduler')
 
 
 @receiver(pre_save)
@@ -133,7 +133,7 @@ def felis_abstract_model_post_save_signal_receiver(instance, **kwargs):
     else:
         logger.info("Instance `{0}' of  model `{1}' have been updated".format(instance, kwargs['sender']))
     # starting task scheduler
-    # async('felis.tasks.task_scheduler')
+    # async_task('felis.tasks.task_scheduler')
 
 
 @receiver(pre_delete)
@@ -163,4 +163,4 @@ def felis_abstract_model_post_delete_signal_receiver(instance, **kwargs):
         return
     logger.info("Instance `{0}' of  model `{1}' have been deleted".format(instance, kwargs['sender']))
     # starting task scheduler
-    # async('felis.tasks.task_scheduler')
+    # async_task('felis.tasks.task_scheduler')
