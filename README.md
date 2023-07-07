@@ -3,35 +3,33 @@ django-based web-application to manage FreeBSD jails
 
 Working on Documenting this project.
 
-Installation Instructions
+# Table of Contents
+- [felis](#felis)
+- [Package Requirements](#package-requirements)
+- [felis Installation](#felis-installation)
+  
+# Package Requirements
+## Install the following packages on the jail host
+1. `pkg install postgresql13-client sqlite3 python39 py39-pip py39-sqlite3 py39-supervisor py39-virtualenv`
+   
+# felis Installation
+## Setup a virtual environment
 
-Download Code
+## felis Installation
+1. Download Code
+2. `pip -r requirements.txt`
+3. edit felis/settings.py
+    * Create a secure SECRET_KEY
+    * Add host IP to ALLOWED_HOSTS
+    * Change DATABASE settings
+    * Update CACHES
+    * Update Q_CLUSTER
+    * Change FELIS_WORK_DIR
+4. `manage.py migrate felis` Create initial Database
+5. `manage.py migrate selfcheck` - May not be needed. Need to update notes
+6. `manage.py createsuperuser` to create your initial user
+7. `manage.py runserver 0.0.0.0:8000` Start application
+8. `manage.py qcluster` Start Scheduled tasks application
 
-Install requirements with pip -r requirements.txt (to be posted soon)
-
-Edit settings.py in the felis directory 
-
- Create a secure SECRET_KEY
- 
- Add your Hosts to ALLOWED_HOSTS
- 
- Change DATABASES settings to match your environment
- 
- Setup redis database and update CACHES to match your environment
-
- Setup redis database in Q_CLUSTER to match your environment
- 
- Change FELIS_WORK_DIR to match your environment
- 
-Run ./manage.py migrate felis to create the inital DB
-
-Run ./manage.py migrate selfcheck to add it's support to the DB
-
-Run ./manage.py createsuperuser to create your initial user
-
-Run ./manage.py runserver to start the application
-
-Run ./manage.py qcluster for running scheduled tasks
-
-Connect to the web interface by browing to IP:8000 
-
+## Web Interface
+Connect to the web interface by at Host_IP:8000 
