@@ -12,7 +12,7 @@ Working on Documenting this project.
   
 # Package Requirements
 ## Install the following packages on the jail host
-1. `pkg install postgresql13-client sqlite3 python39 py39-pip py39-sqlite3 py39-supervisor py39-virtualenv`
+1. `pkg install postgresql13-client sudo sqlite3 python39 py39-pip py39-sqlite3 py39-supervisor py39-virtualenv`
    
 # felis Installation
 ## Setup a virtual environment
