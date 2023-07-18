@@ -36,7 +36,7 @@ class Transaction(models.Model):
     instance = models.ForeignKey(
         'Model', related_name='transactions', on_delete=models.SET_NULL,
         null=True, db_index=True, blank=True, editable=False)
-    content_type = models.ForeignKey(ContentType, null=True, db_index=True, blank=True)
+    content_type = models.ForeignKey(ContentType, null=True, db_index=True, blank=True, on_delete=models.CASCADE)
 
     change_type = models.PositiveSmallIntegerField(
         choices=((CREATE, 'CREATE'), (UPDATE, 'UPDATE'), (DELETE, 'DELETE')),
@@ -48,10 +48,10 @@ class Transaction(models.Model):
     committed = models.DateTimeField(null=True, default=None, db_index=True, blank=True)
     rolledback = models.DateTimeField(null=True, default=None, db_index=True, blank=True)
     value = JSONField(null=True, db_index=True, blank=True)
-    task = models.OneToOneField(Task, related_name='transaction', null=True, db_index=True, blank=True, editable=False)
+    task = models.OneToOneField(Task, related_name='transaction', null=True, db_index=True, blank=True, editable=False, on_delete=models.CASCADE)
     depends = models.ManyToManyField('self', symmetrical=True, db_index=True, blank=True, editable=False)
     priority = models.PositiveSmallIntegerField(db_index=True, null=True, blank=True)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True, null=True, blank=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True, null=True, blank=True, on_delete=models.CASCADE)
 
     def full_clean(self, *args, **kwargs):
         # transaction cannot be committed and rolledback simultaneously

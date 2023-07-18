@@ -348,7 +348,7 @@ class Jail(Clone, RctlMixin, JailPropertiesMixin, JailFSMMixin):
         permissions = (('get_console','Can run shhd(8) daemon to get console access'), )
 
     jid = models.IntegerField(blank=True, null=True)
-    world_template = models.ForeignKey(World, related_name='jails', null=True)
+    world_template = models.ForeignKey(World, related_name='jails', null=True, on_delete=models.CASCADE)
     console = models.BooleanField(default=False)
 
     @property

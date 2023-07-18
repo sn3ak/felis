@@ -15,7 +15,7 @@ class UserPreferences(models.Model):
         verbose_name_plural = 'Users preferences'
 
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, null=False, primary_key=True, related_name='preferences', editable=False)
+        settings.AUTH_USER_MODEL, null=False, primary_key=True, related_name='preferences', editable=False, on_delete=models.CASCADE)
     ssh_pubkey = models.TextField(null=True, blank=True)
 
     def __str__(self):

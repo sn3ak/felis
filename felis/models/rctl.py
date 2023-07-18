@@ -102,7 +102,7 @@ class RctlRule(Model):
         # unique_together = (('jail', 'resource', 'action', 'per'),)
         # index_together = (('jail', 'resource', 'action', 'per'),)
 
-    jail = models.ForeignKey('felis.Jail', related_name='rctl_rules', db_index=True)
+    jail = models.ForeignKey('felis.Jail', related_name='rctl_rules', db_index=True, on_delete=models.CASCADE)
     resource = models.CharField(max_length=16, choices=make_resource_choices())
     action = models.CharField(max_length=16, choices=make_action_choices())
     amount = models.BigIntegerField()

@@ -68,8 +68,8 @@ class IPAddress(models.Model):
         verbose_name_plural = 'IP addresses'
         unique_together = (('jail', 'address'), ('interface', 'address'))
 
-    jail = models.ForeignKey(Jail, related_name='addresses', null=True)
-    interface = models.ForeignKey(Interface, related_name='addresses')
+    jail = models.ForeignKey(Jail, related_name='addresses', null=True, on_delete=models.CASCADE)
+    interface = models.ForeignKey(Interface, related_name='addresses', on_delete=models.CASCADE)
     address = models.GenericIPAddressField(protocol='both', unpack_ipv4=True, unique=True)
     netmask = models.PositiveSmallIntegerField()
 
